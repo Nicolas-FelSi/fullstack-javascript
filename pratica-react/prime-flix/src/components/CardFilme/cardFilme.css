@@ -1,0 +1,32 @@
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.div-image {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+img {
+    width: 900px;
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: bottom center;
+}
+
+.div-image a {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    padding: .5rem;
+    width: 100%;
+    background-color: #076DF0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius:  0 0 4px 4px;
+}

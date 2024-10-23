@@ -1,10 +1,12 @@
-function CardFilme(props) {
+import './cardFilme.css'
+
+function CardFilme({ title, poster_path, id }) {
     return (
-        <div>
-            <h2>{props.title}</h2>
-            <div>
-                <img src={props.poster_path} alt={`poster filme ${props.title}`} />
-                <a href="">Acessar</a>
+        <div className='card-filme'>
+            <h2>{title}</h2>
+            <div className="div-image">
+                <img src={poster_path} alt={`poster filme ${title}`} />
+                <a href={`/filme/${id}`}>Acessar</a>
             </div>
         </div>
     )
