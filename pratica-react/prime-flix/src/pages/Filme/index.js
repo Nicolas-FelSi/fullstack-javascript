@@ -1,18 +1,32 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
+import requisicao from "../../api";
 
 function Filme() {
-    const id = useParams();
-    
+    const [filme, setFilme] = useState({});
+    const parametroUrl = useParams();
+
+    async function carregarFilme() {
+        setFilme(requisicao("/" + parametroUrl.id));
+    }
+
     useEffect(() => {
-        console.log(id)
+        carregarFilme()
     }, [])
 
-    return(
-        <div>
-
-        </div>
-    )
+    if (filme) {
+        return (
+            <div>
+                <h2>{filme.title}</h2>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <p>Filme não encontrado</p>
+            </div>
+        )
+    }
 }
 
 export default Filme

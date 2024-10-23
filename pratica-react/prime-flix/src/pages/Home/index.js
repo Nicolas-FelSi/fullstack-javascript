@@ -1,22 +1,24 @@
 import CardFilme from "../../components/CardFilme"
 import { useEffect, useState } from 'react'
-import { opcoes, urlPadrao } from "../../api";
+import requisicao from "../../api";
 import './home.css'
 
 function Home() {
     const [filmes, setFilmes] = useState([]);
 
+    async function carregarFilmes() {
+        setFilmes(await requisicao("/now_playing?language=pt-BR&&page=1"));
+    }
+
     useEffect(() => {
-
-        fetch(`${urlPadrao}/now_playing`, opcoes).then(response => response.json()).then(dados => setFilmes(dados.results));
-
-    }, [])   
+        carregarFilmes()
+    }, [])
 
     return (
         <div className="listaFilmes">
             {filmes.map(filme => {
                 return (
-                    <CardFilme 
+                    <CardFilme
                         key={filme.id}
                         title={filme.title}
                         poster_path={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
