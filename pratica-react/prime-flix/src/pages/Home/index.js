@@ -1,16 +1,24 @@
 import CardFilme from "../../components/CardFilme"
 import { useEffect, useState } from 'react'
-import requisicao from "../../api";
+import api from '../../services/api'
 import './home.css'
 
 function Home() {
     const [filmes, setFilmes] = useState([]);
 
-    async function carregarFilmes() {
-        setFilmes(await requisicao("/now_playing?language=pt-BR&&page=1"));
-    }
-
     useEffect(() => {
+        async function carregarFilmes() {
+            const response = await api.get("/movie/now_playing", {
+                params: {
+                    language: "pt-BR",
+                    page: 1,
+                    api_key: 'cbed976b0481032e3e8a35e66be6cb7e'
+                }
+            })
+
+            setFilmes(response.data.results.slice(0, 10));
+        }
+
         carregarFilmes()
     }, [])
 
