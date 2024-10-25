@@ -1,4 +1,4 @@
-h2 {
+.card-flime h2 {
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -9,7 +9,7 @@ h2 {
     position: relative;
 }
 
-img {
+.div-image img {
     width: 900px;
     max-width: 100%;
     max-height: 300px;

@@ -1,0 +1,42 @@
+.div-filme {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.div-filme img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: .5rem 0;
+}
+
+.div-filme img + p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.div-filme img + p + p + p{
+    font-weight: bold;
+    margin: .5rem 0 1rem 0;
+}
+
+.div-botoes {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.div-botoes button {
+    padding: .5rem;
+    background-color: rgb(233, 233, 233);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.div-botoes button a {
+    color: black;
+}
+
+.div-botoes button:hover {
+    background-color: rgb(0, 110, 255);
+    transition: all .5s;
+}
