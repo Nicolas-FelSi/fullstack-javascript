@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../services/api'
 import './filme.css'
 
@@ -7,6 +7,7 @@ function Filme() {
     const [filme, setFilme] = useState({});
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function pegarFilme() {
@@ -18,12 +19,15 @@ function Filme() {
             }).then(response => {
                 setFilme(response.data)
                 setLoading(false);
-            }).catch(() => console.log("FILME NÃO ENCONTRADO"))
+            }).catch(() => {
+                console.log("FILME NÃO ENCONTRADO");
+                navigate("/", { replace: true });
+            })
         }
 
         pegarFilme();
 
-    }, [])
+    }, [navigate, id])
 
     if (loading) {
         return (
@@ -31,6 +35,20 @@ function Filme() {
         )
     }
 
+    function salvarFilme() {
+        const filmesStorage = localStorage.getItem("@primeFlix");
+        const listaFilmes = [];
+
+        if (filmesStorage) {
+            const hasFilme = filmesStorage.some(filmeGuardado => filmeGuardado.id === filme.id)
+            alert("ESSE FILME JÁ ESTÁ SALVO!");
+            return;
+        }
+
+        listaFilmes.push(filme);
+        localStorage.setItem("@primeFlix", JSON.stringify(listaFilmes));
+        alert("FILME SALVO COM SUCESSO!");
+    }
 
     return (
         <div className="div-filme">
@@ -40,9 +58,9 @@ function Filme() {
             <p>{filme.overview}</p>
             <p>Avaliação: {filme.vote_average.toFixed(1)} / 10</p>
             <div className="div-botoes">
-                <button>Salvar</button>
+                <button onClick={salvarFilme}>Salvar</button>
                 <button>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">Trailer</a>
+                    <a href={`https://www.youtube.com/results?search_query=${filme.title} trailer`} target="_blank" rel="noreferrer ">Trailer</a>
                 </button>
             </div>
         </div>
