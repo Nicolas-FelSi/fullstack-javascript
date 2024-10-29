@@ -31,22 +31,24 @@ function Filme() {
 
     if (loading) {
         return (
-            <h2>Carregando filme...</h2>
+            <h2 className="text-loading">Carregando filme...</h2>
         )
     }
 
     function salvarFilme() {
-        const filmesStorage = localStorage.getItem("@primeFlix");
-        const listaFilmes = [];
+        const listaFilmes = localStorage.getItem("@primeFlix");
 
-        if (filmesStorage) {
-            const hasFilme = filmesStorage.some(filmeGuardado => filmeGuardado.id === filme.id)
+        const filmeSalvo = JSON.parse(listaFilmes) || [];
+
+        const hasFilme = filmeSalvo.some(filmeGuardado => filmeGuardado.id === filme.id);
+        
+        if (hasFilme) {
             alert("ESSE FILME JÁ ESTÁ SALVO!");
             return;
         }
 
-        listaFilmes.push(filme);
-        localStorage.setItem("@primeFlix", JSON.stringify(listaFilmes));
+        filmeSalvo.push(filme);
+        localStorage.setItem("@primeFlix", JSON.stringify(filmeSalvo));
         alert("FILME SALVO COM SUCESSO!");
     }
 
