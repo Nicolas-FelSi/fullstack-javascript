@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+.text-loading {
+    text-align: center;
+}
+
 .div-filme img {
     max-width: 100%;
     border-radius: 4px;

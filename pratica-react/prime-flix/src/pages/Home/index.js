@@ -26,7 +26,7 @@ function Home() {
 
     if (loading) {
         return (
-            <h2>Carregando filmes...</h2>
+            <h2 className="text-loading">Carregando filmes...</h2>
         )
     }
 
