@@ -13,7 +13,7 @@ function Home() {
                 params: {
                     language: "pt-BR",
                     page: 1,
-                    api_key: 'cbed976b0481032e3e8a35e66be6cb7e'
+                    api_key: process.env.REACT_APP_API_KEY
                 }
             })
 

@@ -13,7 +13,7 @@ function Filme() {
         async function pegarFilme() {
             await api.get('/movie/' + id, {
                 params: {
-                    api_key: 'cbed976b0481032e3e8a35e66be6cb7e',
+                    api_key: process.env.REACT_APP_API_KEY,
                     language: 'pt-BR'
                 }
             }).then(response => {
