@@ -1,26 +1,24 @@
-import Header from "./components/Header";
+import { useState } from "react"
 
 function App() {
+  const [inputNome, setInputNome] = useState("");
+  const [aluno, setAluno] = useState("");
+
+  function mostrarAluno() {
+    setAluno(inputNome);
+  }
+
   return (
     <>
-      <Header></Header>
-      <h1>Alunos</h1>
-      <Aluno nome="Nicolas" idade={22}/>
-      <Aluno nome="Roberto" idade={43}></Aluno>
-    </>
-  )
-}
+      <input 
+        type="text" 
+        placeholder="nome"
+        value={inputNome}
+        onChange={(e) => setInputNome(e.target.value)}
+      />
+      <button onClick={mostrarAluno}>Mostrar aluno</button>
 
-interface AlunoProps {
-  nome: string;
-  idade: number;
-}
-
-function Aluno({nome, idade}: AlunoProps) {
-  return (
-    <>
-      <h1>Nome: {nome}</h1>
-      <h2>Idade: {idade}</h2>
+      <h2>Bem-vindo {aluno}</h2>
     </>
   )
 }
